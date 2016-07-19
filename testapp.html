@@ -1,0 +1,51 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="styling.css">
+<meta charset = "utf-8">
+<meta http-equiv ="X-UA-Compatible" content = "IE = edge">
+<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+<link href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel = "stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://oss.maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>   
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+<script src="testCtrl.js"></script>
+
+<body>
+  <div class="container-fluid" div ng-app="myApp" ng-controller="testCtrl">
+  <nav class = "navbar navbar-default" role = "navigation">
+    <div class = "navbar-header">
+      <a class = "navbar-brand" href = "#"><font color="red">NUTANIX</a>
+      <p class= "navbar-text">--Finding deals made easy!</font></p>
+         <button ng-click="like()">LIKE:{{$storage.counter}}</button>       
+         </div>
+       </nav>
+
+       <label>Search: <input ng-model="searchText"></label>
+
+       <div class="row">
+                  
+                  <p> No.of api hits: {{hit}}</p>
+                   </div> 
+        
+
+        <br/>
+               <div class="row" ng-repeat="names in (filterdata = (fetch|filter:searchText)) track  by $index" ng-if="$index % 3 == 0" >
+                   <div class="col-border col-sm-3" ng-repeat="i in [$index, $index + 1, $index + 2]" ng-if="filterdata[i] != null"></br>
+                        <div class="styling">
+                            <p><b><font color="red">{{filterdata[i].name}}</font></b></p>
+                            <p>Price:{{filterdata[i].actual_price}}</p>
+                            <p>Discount:{{filterdata[i].discount}}</p>
+                            <p>Rating:{{filterdata[i].rating}}</p>
+                            <p>Provider:{{filterdata[i].provider}}</p>
+                            <p>Link:<a ng-href="{{filterdata[i].link} }">Click here to buy!</a><br></p>
+                            <img src="{{filterdata[i].image}}" class="img-thumbnail" height="200 px" width="200 px">
+                        </div>
+                   </div>
+               </div>
+
+
+</div>
+</body>
+</head>
+</html>
